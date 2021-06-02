@@ -1,5 +1,5 @@
 import 'react-native-gesture-handler';
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -11,40 +11,63 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import ApplicationContext from './src/context/ApplicationContext';
+import { COLORS } from './src/constants/constants';
 
+const MainStack = createBottomTabNavigator();
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  //const {} = useContext(ApplicationContext);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-         
+    <NavigationContainer>
+      <MainStack.Navigator
+        initialRouteName="Dashboard"
+        lazy={false}
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconName;
 
+            if (route.name === 'Pokemons') {
+              size = focused ? 24 : 22;
+              iconName = focused ? 'hard-drive' : 'hard-drive';
+            } else if (route.name === 'Dashboard') {
+              size = focused ? 24 : 22;
+              iconName = focused ? 'home' : 'home';
+            }
 
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+        })}
+        tabBarOptions={{
+          activeBackgroundColor: '#0020A8',
+          inactiveBackgroundColor: COLORS.AZUL,
+          tabStyle: { paddingBottom: 2 },
+          keyboardHidesTabBar: true,
+          labelStyle: { fontSize: 14, fontFamily: 'light' },
+          activeTintColor: '#F9DD16',
+          inactiveTintColor: '#fff',
+          style: {
+            width: '125%',
+            height: 60,
+            borderTopWidth: 0.3,
+            borderTopColor: '#001643',
+          },
+        }}>
+        <MainStack.Screen 
+          name="Dashboard"
+          component={DashboardStack}
+          color="#558855"
+        />
+        <MainStack.Screen 
+        name="Pokemons"
+        component={PokemonsStack}
+        color="#558855"
+      />
+      </MainStack.Navigator>
+    </NavigationContainer>
   );
 };
 

@@ -35,7 +35,7 @@ useEffect(() => {
 
 return (
   <ApplicationContext.Provider
-    value={{}}>
+    value={{data: pokemonsList}}>
     {children}
   </ApplicationContext.Provider>
 );
