@@ -1,0 +1,14 @@
+com/compassoreactnativepocpokedex/ReactNativeFlipper.java
+ com.compassoreactnativepocpokedex.ReactNativeFlipper
+ com.compassoreactnativepocpokedex.ReactNativeFlipper$1
+ com.compassoreactnativepocpokedex.ReactNativeFlipper$2
+ com.compassoreactnativepocpokedex.ReactNativeFlipper$2$1
+com/compassoreactnativepocpokedex/MainApplication.java
+ com.compassoreactnativepocpokedex.MainApplication
+ com.compassoreactnativepocpokedex.MainApplication$1
+com/compassoreactnativepocpokedex/BuildConfig.java
+ com.compassoreactnativepocpokedex.BuildConfig
+com/compassoreactnativepocpokedex/MainActivity.java
+ com.compassoreactnativepocpokedex.MainActivity
+com/facebook/react/PackageList.java
+ com.facebook.react.PackageList
