@@ -12,13 +12,13 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+Icon.loadFont();
 
 import ApplicationContext from './src/context/ApplicationContext';
 import { COLORS } from './src/constants/constants';
 import DashboardStack from './src/navigation/Dashboard/DashboardStack';
 import PokemonStack from './src/navigation/Pokemons/PokemonStack';
-Icon.loadFont();
 
 const MainStack = createBottomTabNavigator();
 
@@ -36,7 +36,7 @@ const App = () => {
 
             if (route.name === 'Pokemons') {
               size = focused ? 24 : 22;
-              iconName = focused ? 'hard-drive' : 'hard-drive';
+              iconName = focused ? 'archive' : 'archive';
             } else if (route.name === 'Dashboard') {
               size = focused ? 24 : 22;
               iconName = focused ? 'home' : 'home';
@@ -54,7 +54,7 @@ const App = () => {
           activeTintColor: '#F9DD16',
           inactiveTintColor: '#fff',
           style: {
-            width: '125%',
+            width: '100%',
             height: 60,
             borderTopWidth: 0.3,
             borderTopColor: '#001643',

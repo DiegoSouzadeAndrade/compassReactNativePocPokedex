@@ -7,12 +7,10 @@ import React from 'react';
 
 import {COLORS} from '../../constants/constants';
 import Pokemons from './Pokemons';
+import Header from '../../componets/Header';
 
 const Stack = createStackNavigator();
 
-        {/*options={({ navigation, route }) => ({
-          headerTitle: () => <Header name="Dashboard" />,
-        })}*/}
 
 const screenOptionStyle = {
   headerStyle: {
@@ -32,7 +30,9 @@ const PokemonStack = () => {
       <Stack.Screen 
         name="Pokemons"
         component={Pokemons}
-
+        options={({ navigation, route }) => ({
+          headerTitle: () => <Header name="Pokemons" />,
+        })}
       />
     </Stack.Navigator>
   )
