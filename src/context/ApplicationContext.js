@@ -21,7 +21,8 @@ export const ApplicationProvider = ({ children }) => {
   const getPokemons = async () =>{
     axios.get(API_PATH + POKEMON)
     .then((response) =>{
-      console.log({response});
+      console.log('Pokemons ', response.data.results);
+      setPokemonsList(response.data.results);
     }).catch((error)=>{
       console.log(error);
     })
@@ -30,7 +31,9 @@ export const ApplicationProvider = ({ children }) => {
   useEffect(() => {
 
     const bootstrapAsync = async () => {
-      //getPokemons();
+      if(pokemonsList.length == 0){
+        getPokemons();
+      }
     };
   
     setTimeout(() => {
