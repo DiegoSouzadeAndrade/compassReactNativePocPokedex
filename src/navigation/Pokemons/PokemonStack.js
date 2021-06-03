@@ -6,7 +6,7 @@ import React from 'react';
 //import Icon from 'react-native-vector-icons/Feather'
 
 import {COLORS} from '../../constants/constants';
-import DashBoard from './Dashboard';
+import Pokemons from './Pokemons';
 
 const Stack = createStackNavigator();
 
@@ -26,16 +26,16 @@ const screenOptionStyle = {
   headerTintColor: 'white',
 };
 
-const DashboardStack = () => {
+const PokemonStack = () => {
   return(
     <Stack.Navigator>
       <Stack.Screen 
-        name="Dashboard"
-        component={DashBoard}
+        name="Pokemons"
+        component={Pokemons}
 
       />
     </Stack.Navigator>
   )
 };
 
-export default DashboardStack;
+export default PokemonStack;

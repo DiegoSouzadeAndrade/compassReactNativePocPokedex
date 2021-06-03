@@ -12,9 +12,13 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Feather';
 
 import ApplicationContext from './src/context/ApplicationContext';
 import { COLORS } from './src/constants/constants';
+import DashboardStack from './src/navigation/Dashboard/DashboardStack';
+import PokemonStack from './src/navigation/Pokemons/PokemonStack';
+Icon.loadFont();
 
 const MainStack = createBottomTabNavigator();
 
@@ -62,10 +66,10 @@ const App = () => {
           color="#558855"
         />
         <MainStack.Screen 
-        name="Pokemons"
-        component={PokemonsStack}
-        color="#558855"
-      />
+          name="Pokemon"
+          component={PokemonStack}
+          color="#558855"
+        />
       </MainStack.Navigator>
     </NavigationContainer>
   );

@@ -20,24 +20,24 @@ export const ApplicationProvider = ({ children }) => {
   const getPokemons = () =>{
 
   }
+
+  useEffect(() => {
+
+    const bootstrapAsync = async () => {
+  
+    };
+  
+    setTimeout(() => {
+      bootstrapAsync();
+    }, 3000);
+  }, []);
+
+  return (
+    <ApplicationContext.Provider
+      value={{data: pokemonsList}}>
+      {children}
+    </ApplicationContext.Provider>
+  );
 }
-
-useEffect(() => {
-
-  const bootstrapAsync = async () => {
-
-  };
-
-  setTimeout(() => {
-    bootstrapAsync();
-  }, 3000);
-}, []);
-
-return (
-  <ApplicationContext.Provider
-    value={{data: pokemonsList}}>
-    {children}
-  </ApplicationContext.Provider>
-);
 
 export default ApplicationContext;
