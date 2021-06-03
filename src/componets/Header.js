@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/Ionicons';
 Icon.loadFont();
 
 import ApplicationContext from '../context/ApplicationContext';
@@ -17,7 +17,7 @@ const Header = ({ name }) => {
       <Text style={styles.text}>{name}</Text>
       <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: 40, height: 40 }}>
         {name == 'Pokemons' ?
-          <Icon name='search' size={25} color='black' onPress={() => setisSearchBarVisible(!isSearchBarVisible)} />
+          <Icon name='search-circle' size={35} color='red' onPress={() => setisSearchBarVisible(!isSearchBarVisible)} />
           : null
         }
       </TouchableOpacity>
@@ -34,6 +34,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 22,
     color: '#fff',
+    marginTop: 5,
     //fontWeight: '900',
     fontFamily: 'light'
   },

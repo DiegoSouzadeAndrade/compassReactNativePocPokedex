@@ -7,6 +7,7 @@ import React from 'react';
 
 import {COLORS} from '../../constants/constants';
 import Pokemons from './Pokemons';
+import DetailPokemon from './DetailPokemon';
 import Header from '../../componets/Header';
 
 const Stack = createStackNavigator();
@@ -32,6 +33,19 @@ const PokemonStack = () => {
         component={Pokemons}
         options={({ navigation, route }) => ({
           headerTitle: () => <Header name="Pokemons" />,
+        })}
+      />
+      <Stack.Screen 
+        name="Datail Pokemon"
+        component={DetailPokemon}
+        options={({ navigation, route }) => ({
+          headerTitle: () => <Header name="Detail Pokemon" />,
+          headerStyle: {
+            elevation: 0,
+            height: 45,
+            backgroundColor: COLORS.AZUL,
+          },
+          headerTintColor: 'white'
         })}
       />
     </Stack.Navigator>

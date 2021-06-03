@@ -5,19 +5,16 @@ import {
 import React from 'react';
 //import Icon from 'react-native-vector-icons/Feather'
 
-import {COLORS} from '../../constants/constants';
+import { COLORS } from '../../constants/constants';
 import DashBoard from './Dashboard';
+import Header from '../../componets/Header';
 
 const Stack = createStackNavigator();
-
-        {/*options={({ navigation, route }) => ({
-          headerTitle: () => <Header name="Dashboard" />,
-        })}*/}
 
 const screenOptionStyle = {
   headerStyle: {
     elevation: 0,
-    height: 45,
+    height: 35,
     backgroundColor: COLORS.AZUL,
   },
   gestureEnabled: true,
@@ -27,12 +24,19 @@ const screenOptionStyle = {
 };
 
 const DashboardStack = () => {
-  return(
+  return (
     <Stack.Navigator>
-      <Stack.Screen 
+      <Stack.Screen
         name="Dashboard"
         component={DashBoard}
-
+        options={({ navigation, route }) => ({
+          headerTitle: () => <Header name="Dashboard" />,
+          headerStyle: {
+            elevation: 0,
+            height: 45,
+            backgroundColor: COLORS.AZUL,
+          }
+        })}
       />
     </Stack.Navigator>
   )

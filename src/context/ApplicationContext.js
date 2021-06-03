@@ -30,7 +30,7 @@ export const ApplicationProvider = ({ children }) => {
   useEffect(() => {
 
     const bootstrapAsync = async () => {
-      getPokemons();
+      //getPokemons();
     };
   
     setTimeout(() => {

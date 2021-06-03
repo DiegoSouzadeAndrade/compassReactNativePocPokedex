@@ -12,7 +12,7 @@ import {
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from 'react-native-vector-icons/Ionicons';
 Icon.loadFont();
 
 import ApplicationContext from './src/context/ApplicationContext';
@@ -36,7 +36,7 @@ const App = () => {
 
             if (route.name === 'Pokemons') {
               size = focused ? 24 : 22;
-              iconName = focused ? 'archive' : 'archive';
+              iconName = focused ? 'bug' : 'bug';
             } else if (route.name === 'Dashboard') {
               size = focused ? 24 : 22;
               iconName = focused ? 'home' : 'home';
@@ -66,7 +66,7 @@ const App = () => {
           color="#558855"
         />
         <MainStack.Screen 
-          name="Pokemon"
+          name="Pokemons"
           component={PokemonStack}
           color="#558855"
         />
