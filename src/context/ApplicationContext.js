@@ -64,7 +64,7 @@ export const ApplicationProvider = ({ children }) => {
               ApiImagePathTemp = `${IMAGE_API_PATH}${POKEMON}${imageCount}.png`;
               fullApiPokemonsImage.push(ApiImagePathTemp);
             });
-            console.log(fullApiPokemons.length);
+            //console.log(fullApiPokemons.length);
           }).catch((error)=>{
             console.log(error);
           })
