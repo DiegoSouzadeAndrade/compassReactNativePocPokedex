@@ -46,8 +46,8 @@ const App = () => {
           },
         })}
         tabBarOptions={{
-          activeBackgroundColor: '#0020A8',
-          inactiveBackgroundColor: COLORS.AZUL,
+          activeBackgroundColor: COLORS.VERMELHO2,
+          inactiveBackgroundColor: COLORS.VERMELHO,
           tabStyle: { paddingBottom: 2 },
           keyboardHidesTabBar: true,
           labelStyle: { fontSize: 14, fontFamily: 'light' },

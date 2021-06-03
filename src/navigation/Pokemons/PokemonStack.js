@@ -33,19 +33,25 @@ const PokemonStack = () => {
         component={Pokemons}
         options={({ navigation, route }) => ({
           headerTitle: () => <Header name="Pokemons" />,
+          headerStyle: {
+            elevation: 0,
+            height: 45,
+            backgroundColor: COLORS.VERMELHO,
+          },
+          headerTintColor: 'blue'
         })}
       />
       <Stack.Screen 
         name="Datail Pokemon"
         component={DetailPokemon}
         options={({ navigation, route }) => ({
-          headerTitle: () => <Header name="Detail Pokemon" />,
+          headerTitle: () => <Header name="Detalhamento do Pokemon" />,
           headerStyle: {
             elevation: 0,
             height: 45,
-            backgroundColor: COLORS.AZUL,
+            backgroundColor: COLORS.VERMELHO,
           },
-          headerTintColor: 'white'
+          headerTintColor: 'blue'
         })}
       />
     </Stack.Navigator>

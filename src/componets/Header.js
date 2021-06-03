@@ -17,7 +17,7 @@ const Header = ({ name }) => {
       <Text style={styles.text}>{name}</Text>
       <TouchableOpacity style={{ flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center', width: 40, height: 40 }}>
         {name == 'Pokemons' ?
-          <Icon name='search-circle' size={35} color='red' onPress={() => setisSearchBarVisible(!isSearchBarVisible)} />
+          <Icon name='search-circle' size={35} color='blue' onPress={() => setisSearchBarVisible(!isSearchBarVisible)} />
           : null
         }
       </TouchableOpacity>

@@ -39,7 +39,7 @@ const Pokemons = ({ navigation }) => {
   }
 
   return (
-    <View style={{ backgroundColor: COLORS.AZUL, flex: 1 }}>
+    <View style={{ backgroundColor: COLORS.VERMELHO, flex: 1 }}>
       <ScrollView
         horizontal={false}
         showsVerticalScrollIndicator={false}
@@ -47,13 +47,13 @@ const Pokemons = ({ navigation }) => {
         style={{ height: 50 }}>
         {paginate(fullPokemonsApiList, pageSize, page).map((pokemon, index) => {
           id = index + 1
-          const pokemonImageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+          //const pokemonImageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
           return (
             <Card
               key={index}
               style={{ margin: 5, height: 200, flexDirection: 'column', alignItems: 'center' }}
               onPress={() => {
-                console.log(fullPokemonsApiList.length);
+                //console.log(fullPokemonsApiList.length);
                 getDetailPokemon(pokemon.name, navigation);
               }}
             >

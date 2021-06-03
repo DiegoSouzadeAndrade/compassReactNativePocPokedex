@@ -31,7 +31,7 @@ const renderItem = ({ item }) => <Item title={item.title} />;
 
 const DashBoard = ({ navigation }) => {
   return (
-    <View style={{ backgroundColor: COLORS.AZUL, flex: 1 }}>
+    <View style={{ backgroundColor: COLORS.VERMELHO, flex: 1 }}>
       <ScrollView
         styles={styles.container}
         horizontal={true}

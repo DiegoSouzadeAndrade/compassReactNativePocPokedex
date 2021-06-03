@@ -34,7 +34,7 @@ const DashboardStack = () => {
           headerStyle: {
             elevation: 0,
             height: 45,
-            backgroundColor: COLORS.AZUL,
+            backgroundColor: COLORS.VERMELHO,
           }
         })}
       />

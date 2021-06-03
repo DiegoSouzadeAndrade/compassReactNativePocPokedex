@@ -45,7 +45,7 @@ const DetailPokemon = ({ navigation, route }) => {
   });
 
   return (
-    <View style={{ backgroundColor: COLORS.AZUL, flex: 1 }}>
+    <View style={{ backgroundColor: COLORS.VERMELHO, flex: 1 }}>
       <ScrollView
         styles={styles.container}
         horizontal={true}
@@ -78,6 +78,7 @@ const DetailPokemon = ({ navigation, route }) => {
                   <Text style={{ fontSize: 13, marginBottom: 5 }}>Tipo:</Text>
                   <Text style={{ fontSize: 10 }}>Peso: {detailedPokemon.weight}</Text>
                   <Text style={{ fontSize: 10 }}>Altura: {detailedPokemon.height}</Text>
+                  <Text style={{ fontSize: 10 }}>XP base: {detailedPokemon.base_experience}</Text>
                   {detailedPokemon.forms.map((forms, index) => {
                     return (
                       <View key={index} style={{ flexDirection: 'row' }}>
@@ -91,8 +92,8 @@ const DetailPokemon = ({ navigation, route }) => {
                         <Text style={{ fontSize: 10 }}>Tipos passados {index + 1}: {past_types.name}</Text>
                       </View>
                     )
-                  }) : null}
-                  
+                  }) : <Text style={{ fontSize: 10 }}>Não possui tipos passados</Text>}
+
                 </View>
                 <View style={{ flexDirection: 'column', margin: 5 }}>
                   <Text style={{ fontSize: 13, marginBottom: 5 }}>Tipo:</Text>
@@ -129,9 +130,20 @@ const DetailPokemon = ({ navigation, route }) => {
             </View>
             <View style={{ flexDirection: 'column', margin: 5 }}>
               <Text style={{ fontSize: 15 }}>Ataques:</Text>
-              {detailedPokemon.moves.map((moves, index) => {
+              {detailedPokemon.moves.slice(0, 7).map((moves, index) => {
                 return <Text key={index} style={{ fontSize: 10 }}>{moves.move.name}</Text>
               })}
+            </View>
+            <View style={{ flexDirection: 'column', margin: 5 }}>
+              <Text style={{ fontSize: 15 }}>Itens:</Text>
+              {detailedPokemon.held_items.length != 0 ? detailedPokemon.held_items.map((items, index) => {
+                return (
+                  <View key={index} style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 10 }}>Item {index +1}: {items.item.name}</Text>
+                    <Text style={{ fontSize: 10 }}>Raridade: {items.version_details[0].rarity}</Text>
+                  </View>
+                )
+              }): <Text style={{ fontSize: 10 }}>Não possui itens</Text>}
             </View>
           </View>
         </Card>
