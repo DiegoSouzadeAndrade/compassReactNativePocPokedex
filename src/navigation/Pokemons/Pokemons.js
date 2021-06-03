@@ -30,7 +30,13 @@ import ApplicationContext from '../../context/ApplicationContext';
 Icon.loadFont();
 
 const Pokemons = ({ navigation }) => {
-  const { data } = useContext(ApplicationContext);
+  const { data, getDetailPokemon, fullPokemonsApiList, fullPokemonsImageApiList } = useContext(ApplicationContext);
+  const [page, setPage] = useState(1);
+  const [pageSize, setPageSize] = useState(20);
+
+  function paginate(pokemonArray, pageSize, pageNumber) {
+    return pokemonArray.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
+  }
 
   return (
     <View style={{ backgroundColor: COLORS.AZUL, flex: 1 }}>
@@ -39,13 +45,38 @@ const Pokemons = ({ navigation }) => {
         showsVerticalScrollIndicator={false}
         showsHorizontalScrollIndicator={false}
         style={{ height: 50 }}>
-        {data.map((pokemon, index) => {
-          const pokemonImageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${index + 1}.png`
-          return <Card key={index} style={{margin:5, height: 200, flexDirection: 'column', alignItems: 'center'}}>
-            <Text style={{fontSize: 20}}>{pokemon.name.toUpperCase()}</Text>
-            <Image style={{width:150, height:150}} source={{uri: pokemonImageUri}} ></Image>
-          </Card>
+        {paginate(fullPokemonsApiList, pageSize, page).map((pokemon, index) => {
+          id = index + 1
+          const pokemonImageUri = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+          return (
+            <Card
+              key={index}
+              style={{ margin: 5, height: 200, flexDirection: 'column', alignItems: 'center' }}
+              onPress={() => {
+                console.log(fullPokemonsApiList.length);
+                getDetailPokemon(pokemon.name, navigation);
+              }}
+            >
+              <Text style={{ fontSize: 20 }}>{pokemon.name.toUpperCase()}</Text>
+              <Image key={index} style={{ width: 150, height: 150 }} source={{ uri: fullPokemonsImageApiList[index] }} ></Image>
+
+            </Card>)
         })}
+        <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+          <Button
+            title={'Anterior'}
+            onPress={() => {
+              setPage(page - 1);
+              console.log(page);
+            }}
+          ></Button>
+          <Button
+            title={'Proximo'}
+            onPress={() => {
+              setPage(page + 1);
+              console.log(page);
+            }}></Button>
+        </View>
       </ScrollView>
     </View>
   )

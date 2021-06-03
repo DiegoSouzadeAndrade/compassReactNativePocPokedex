@@ -5,7 +5,7 @@
 ## To run this project 
  
 
-0 - Setup gitflow
+0 - Setup git
  
 
 1 - clone this repository

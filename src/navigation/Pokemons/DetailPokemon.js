@@ -8,6 +8,7 @@ import {
   InteractionManager,
   StatusBar,
   Button,
+  Image
 } from 'react-native';
 
 import {
@@ -19,7 +20,11 @@ import { Card, Title } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
 
 import ApplicationContext from '../../context/ApplicationContext';
-import { COLORS } from '../../constants/constants';
+import {
+  COLORS,
+  API_PATH,
+  POKEMON
+} from '../../constants/constants';
 
 const Item = ({ title }) => (
   <View style={styles.item}>
@@ -29,7 +34,16 @@ const Item = ({ title }) => (
 
 const renderItem = ({ item }) => <Item title={item.title} />;
 
-const DetailPokemon = ({ navigation }) => {
+const DetailPokemon = ({ navigation, route }) => {
+  //const { pokemon, id } = route.params;
+  const { detailedPokemon, fullPokemonsImageApiList } = useContext(ApplicationContext);
+
+
+
+  useEffect(() => {
+    //console.log('pokemon selected ', detailedPokemon);
+  });
+
   return (
     <View style={{ backgroundColor: COLORS.AZUL, flex: 1 }}>
       <ScrollView
@@ -54,7 +68,72 @@ const DetailPokemon = ({ navigation }) => {
             margin: 10,
           }}
         >
+          <Text style={{ fontSize: 20 }}>{detailedPokemon.name.toUpperCase()}</Text>
+          <Image style={{ width: 200, height: 200 }} source={{ uri: fullPokemonsImageApiList[detailedPokemon.id - 1] }} ></Image>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'column', margin: 5 }}>
+              <Text style={{ fontSize: 15 }}>Caracteristicas:</Text>
+              <View style={{ flexDirection: 'row' }}>
+                <View style={{ flexDirection: 'column', margin: 5 }}>
+                  <Text style={{ fontSize: 13, marginBottom: 5 }}>Tipo:</Text>
+                  <Text style={{ fontSize: 10 }}>Peso: {detailedPokemon.weight}</Text>
+                  <Text style={{ fontSize: 10 }}>Altura: {detailedPokemon.height}</Text>
+                  {detailedPokemon.forms.map((forms, index) => {
+                    return (
+                      <View key={index} style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 10 }}>Forma {index + 1}: {forms.name}</Text>
+                      </View>
+                    )
+                  })}
+                  {detailedPokemon.past_types.length != 0 ? detailedPokemon.past_types.map((past_types, index) => {
+                    return (
+                      <View key={index} style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 10 }}>Tipos passados {index + 1}: {past_types.name}</Text>
+                      </View>
+                    )
+                  }) : null}
+                  
+                </View>
+                <View style={{ flexDirection: 'column', margin: 5 }}>
+                  <Text style={{ fontSize: 13, marginBottom: 5 }}>Tipo:</Text>
+                  {detailedPokemon.types.map((types, index) => {
+                    return (
+                      <View key={index} style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 10 }}>{types.type.name}</Text>
+                      </View>
+                    )
+                  })}
+                </View>
+                <View style={{ flexDirection: 'column', margin: 5 }}>
+                  <Text style={{ fontSize: 13, marginBottom: 5 }}>Stats:</Text>
+                  {detailedPokemon.stats.map((stats, index) => {
+                    return (
+                      <View key={index} style={{ flexDirection: 'row' }}>
+                        <Text style={{ fontSize: 10 }}>{stats.stat.name}</Text>
+                        <Text style={{ fontSize: 10, marginLeft: 5 }}>{stats.base_stat}</Text>
+                      </View>
+                    )
+                  })}
+                </View>
+              </View>
+            </View>
 
+
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flexDirection: 'column', margin: 5 }}>
+              <Text style={{ fontSize: 15 }}>Habilidades:</Text>
+              {detailedPokemon.abilities.map((abilities, index) => {
+                return <Text key={index} style={{ fontSize: 10 }}>{abilities.ability.name}</Text>
+              })}
+            </View>
+            <View style={{ flexDirection: 'column', margin: 5 }}>
+              <Text style={{ fontSize: 15 }}>Ataques:</Text>
+              {detailedPokemon.moves.map((moves, index) => {
+                return <Text key={index} style={{ fontSize: 10 }}>{moves.move.name}</Text>
+              })}
+            </View>
+          </View>
         </Card>
       </ScrollView>
     </View>

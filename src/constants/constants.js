@@ -6,9 +6,14 @@
 
 // ========================== PATH ==============================
 export const API_PATH = 'https://pokeapi.co/api/v2/'
+export const IMAGE_API_PATH = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/'
 
 // ========================= FILTER =============================
 export const POKEMON = 'pokemon/'
+
+// ========================= CONCAT =============================
+export const OFFSET = '?offset='
+export const LIMIT = '&limit='
 
 // =====================  Summary Colors ===========================
 export const COLORS = {
