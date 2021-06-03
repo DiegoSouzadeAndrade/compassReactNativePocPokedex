@@ -14,7 +14,7 @@ const ApplicationContext = React.createContext();
 
 export const ApplicationProvider = ({ children }) => {
   const [isSearchBarVisible, setisSearchBarVisible] = useState(false);
-  const [pokemonsList, setPokemonsList] = useState([]);
+  const [pokemonsListCount, setPokemonsListCount] = useState(0);
   const [fullPokemonsApiList, setFullPokemonsApiList] = useState([]);
   const [fullPokemonsImageApiList, setFullPokemonsImageApiList] = useState([]);
   const [detailedPokemon, setDetailedPokemon] = useState([]);
@@ -38,6 +38,7 @@ export const ApplicationProvider = ({ children }) => {
     await axios.get(API_PATH + POKEMON)
     .then((response) =>{
       pokemonCount = response.data.count;
+      setPokemonsListCount(pokemonCount);
       numPages = pokemonCount / 20;
       nextApiPath = response.data.next;
       fullApiPokemons = response.data.results;
@@ -115,7 +116,7 @@ export const ApplicationProvider = ({ children }) => {
   return (
     <ApplicationContext.Provider
       value={{
-        data: pokemonsList,
+        pokemonsListCount,
         fullPokemonsApiList,
         fullPokemonsImageApiList,
         isSearchBarVisible,

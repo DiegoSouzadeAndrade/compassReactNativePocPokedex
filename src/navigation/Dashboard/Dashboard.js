@@ -8,6 +8,7 @@ import {
   InteractionManager,
   StatusBar,
   Button,
+  Image
 } from 'react-native';
 
 import {
@@ -30,6 +31,7 @@ const Item = ({ title }) => (
 const renderItem = ({ item }) => <Item title={item.title} />;
 
 const DashBoard = ({ navigation }) => {
+  const { pokemonsListCount } = useContext(ApplicationContext);
   return (
     <View style={{ backgroundColor: COLORS.VERMELHO, flex: 1 }}>
       <ScrollView
@@ -54,6 +56,11 @@ const DashBoard = ({ navigation }) => {
             margin: 10,
           }}
         >
+          <View style={{flexDirection: 'column', alignItems: 'center', marginTop: 50}}>
+            <Image style={{ width: 150, height: 150 }} source={{ uri: 'https://imagensemoldes.com.br/wp-content/uploads/2020/04/Logo-Pokebola-Pok%C3%A9mon-PNG.png' }}></Image>
+            <Text style={{fontSize: 15}}>Pokemons Registrados:</Text>
+            <Text style={{fontSize: 15}}>{pokemonsListCount}</Text>
+          </View>
 
         </Card>
       </ScrollView>

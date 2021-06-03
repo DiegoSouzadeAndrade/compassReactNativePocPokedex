@@ -30,7 +30,7 @@ const DashboardStack = () => {
         name="Dashboard"
         component={DashBoard}
         options={({ navigation, route }) => ({
-          headerTitle: () => <Header name="Dashboard" />,
+          headerTitle: () => <Header name="PokeDex" />,
           headerStyle: {
             elevation: 0,
             height: 45,
