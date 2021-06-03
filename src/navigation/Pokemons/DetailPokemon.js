@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useState, useEffect } from 'react';
+import React, { useContext, useLayoutEffect, useEffect } from 'react';
 import {
   Text,
   View,
@@ -25,6 +25,7 @@ import {
   API_PATH,
   POKEMON
 } from '../../constants/constants';
+import Header from '../../componets/Header';
 
 const Item = ({ title }) => (
   <View style={styles.item}>
@@ -38,9 +39,21 @@ const DetailPokemon = ({ navigation, route }) => {
   //const { pokemon, id } = route.params;
   const { detailedPokemon, fullPokemonsImageApiList } = useContext(ApplicationContext);
 
+  function findPokemonImage(name) {
+    const imagefound = fullPokemonsImageApiList.find((pokemonImage) => pokemonImage.pokemonName === name);
+    console.log({ imagefound });
+    if (imagefound != null) {
+      return <Image style={{ width: 170, height: 170, backgroundColor: '#74a1fc', borderRadius: 5}} source={{ uri: imagefound.uri }} ></Image>
+    }
 
+  }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // navigation.setOptions({
+    //   headerTitle: () =>{
+    //     <Header name={detailedPokemon.name}/>
+    //   }
+    // });
     //console.log('pokemon selected ', detailedPokemon);
   });
 
@@ -48,7 +61,7 @@ const DetailPokemon = ({ navigation, route }) => {
     <View style={{ backgroundColor: COLORS.VERMELHO, flex: 1 }}>
       <ScrollView
         styles={styles.container}
-        horizontal={true}
+        horizontal={false}
         alwaysBounceHorizontal={true}
         decelerationRate={0.9}
         snapToInterval={Dimensions.get('window').width} //your element width
@@ -68,8 +81,11 @@ const DetailPokemon = ({ navigation, route }) => {
             margin: 10,
           }}
         >
-          <Text style={{ fontSize: 20 }}>{detailedPokemon.name.toUpperCase()}</Text>
-          <Image style={{ width: 200, height: 200 }} source={{ uri: fullPokemonsImageApiList[detailedPokemon.id - 1] }} ></Image>
+          <View style={{flexDirection: 'column', alignItems: 'center'}}>
+
+            <Text style={{ fontSize: 20 }}>{detailedPokemon.name.toUpperCase()}</Text>
+            {findPokemonImage(detailedPokemon.name)}
+          </View>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ flexDirection: 'column', margin: 5 }}>
               <Text style={{ fontSize: 15 }}>Caracteristicas:</Text>
@@ -88,8 +104,10 @@ const DetailPokemon = ({ navigation, route }) => {
                   })}
                   {detailedPokemon.past_types.length != 0 ? detailedPokemon.past_types.map((past_types, index) => {
                     return (
-                      <View key={index} style={{ flexDirection: 'row' }}>
-                        <Text style={{ fontSize: 10 }}>Tipos passados {index + 1}: {past_types.name}</Text>
+                      <View key={index} style={{ flexDirection: 'column' }}>
+                        <Text style={{ fontSize: 10 }}>Tipos passados {index + 1}:</Text>
+                        <Text style={{ fontSize: 10 }}>Geração: {past_types.generation.name}</Text>
+                        <Text style={{ fontSize: 10 }}>Tipo: {past_types.types[index].type.name}</Text>
                       </View>
                     )
                   }) : <Text style={{ fontSize: 10 }}>Não possui tipos passados</Text>}
@@ -138,12 +156,13 @@ const DetailPokemon = ({ navigation, route }) => {
               <Text style={{ fontSize: 15 }}>Itens:</Text>
               {detailedPokemon.held_items.length != 0 ? detailedPokemon.held_items.map((items, index) => {
                 return (
-                  <View key={index} style={{ flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 10 }}>Item {index +1}: {items.item.name}</Text>
+                  <View key={index} style={{ flexDirection: 'column' }}>
+                    <Text style={{ fontSize: 10 }}>Item {index + 1}:</Text>
+                    <Text style={{ fontSize: 10 }}>{items.item.name}</Text>
                     <Text style={{ fontSize: 10 }}>Raridade: {items.version_details[0].rarity}</Text>
                   </View>
                 )
-              }): <Text style={{ fontSize: 10 }}>Não possui itens</Text>}
+              }) : <Text style={{ fontSize: 10 }}>Não possui itens</Text>}
             </View>
           </View>
         </Card>

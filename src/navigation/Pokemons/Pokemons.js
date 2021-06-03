@@ -42,12 +42,21 @@ const Pokemons = ({ navigation }) => {
     return pokemonArray.slice((pageNumber - 1) * pageSize, pageNumber * pageSize);
   }
 
+  function findPokemonImage(name) {
+    const imagefound = fullPokemonsImageApiList.find((pokemonImage) => pokemonImage.pokemonName === name);
+    //console.log({imagefound});
+    if (imagefound != null) {
+      return <Image style={{ width: 150, height: 150 }} source={{ uri: imagefound.uri }} ></Image>
+    }
+  }
+
   function findPokemon(name) {
     const pokemonFound = fullPokemonsApiList.find((pokemon) => pokemon.name === name);
     console.log({ pokemonFound });
-    if(pokemonFound != null){
+    if (pokemonFound != null) {
       searchedList.push(pokemonFound);
       setSearched(true);
+      setPage(1);
     } else {
       Alert.alert(
         'Pokemon não encontrato',
@@ -60,7 +69,7 @@ const Pokemons = ({ navigation }) => {
             },
           },
         ],
-        {cancelable: false},
+        { cancelable: false },
       );
     }
   }
@@ -89,10 +98,11 @@ const Pokemons = ({ navigation }) => {
               name='close'
               size={25}
               color='white'
-              style={{marginTop: 10}}
+              style={{ marginTop: 10 }}
               onPress={() => {
                 setSearched(false);
                 setValueToSearch('');
+                setPage(1);
               }} />
           </View> : null}
         {searched == false ? paginate(fullPokemonsApiList, pageSize, page).map((pokemon, index) => {
@@ -107,9 +117,10 @@ const Pokemons = ({ navigation }) => {
                 getDetailPokemon(pokemon.name, navigation);
               }}
             >
-              <Text style={{ fontSize: 20 }}>{pokemon.name.toUpperCase()}</Text>
-              <Image key={index} style={{ width: 150, height: 150 }} source={{ uri: fullPokemonsImageApiList[index] }} ></Image>
-
+              <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                <Text style={{ fontSize: 20 }}>{pokemon.name.toUpperCase()}</Text>
+                {findPokemonImage(pokemon.name)}
+              </View>
             </Card>)
         }) :
           paginate(searchedList, pageSize, page).map((pokemon, index) => {
@@ -124,8 +135,10 @@ const Pokemons = ({ navigation }) => {
                   getDetailPokemon(pokemon.name, navigation);
                 }}
               >
-                <Text style={{ fontSize: 20 }}>{pokemon.name.toUpperCase()}</Text>
-                <Image key={index} style={{ width: 150, height: 150 }} source={{ uri: fullPokemonsImageApiList[index] }} ></Image>
+                <View style={{ flexDirection: 'column', alignItems: 'center' }}>
+                  <Text style={{ fontSize: 20 }}>{pokemon.name.toUpperCase()}</Text>
+                  {findPokemonImage(pokemon.name)}
+                </View>
 
               </Card>)
           })

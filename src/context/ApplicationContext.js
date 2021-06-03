@@ -43,7 +43,7 @@ export const ApplicationProvider = ({ children }) => {
       fullApiPokemons = response.data.results;
       for (let index = 1; index <= response.data.results.length; index++){
         imageCount++;
-        ApiImagePathTemp = `${IMAGE_API_PATH}${POKEMON}${imageCount}.png`;
+        ApiImagePathTemp = {pokemonName: response.data.results[index - 1].name, uri: `${IMAGE_API_PATH}${POKEMON}${imageCount}.png`};
         fullApiPokemonsImage.push(ApiImagePathTemp);
       }
       setFullPokemonsImageApiList(fullApiPokemonsImage);
@@ -61,7 +61,7 @@ export const ApplicationProvider = ({ children }) => {
             response.data.results.forEach(element => {
               imageCount++;
               fullApiPokemons.push(element);
-              ApiImagePathTemp = `${IMAGE_API_PATH}${POKEMON}${imageCount}.png`;
+              ApiImagePathTemp = {pokemonName: element.name, uri: `${IMAGE_API_PATH}${POKEMON}${imageCount}.png`};
               fullApiPokemonsImage.push(ApiImagePathTemp);
             });
             //console.log(fullApiPokemons.length);
